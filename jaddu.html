@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jaddu</title>
+</head>
+<body>
+    <h3>Program 1: PACKAGE EMPLOYEE</h3>
+    <p>package employee; <br>
+        public class Employee { <br>
+            private int empNo; <br>
+            private double basicPay;  <br>
+            public Employee(int empNo) { <br>
+                this.empNo = empNo;<br>
+            } <br>
+            public void setBasicPay(double pay) { <br>
+                this.basicPay = pay;<br>
+            }<br>
+            public void display() {<br>
+                System.out.println("Employee Number: " + empNo);<br>
+                System.out.println("Basic Pay: " + basicPay);<br>
+            }<br>
+        }<br></p>
+
+        <br>
+        <p>package employee;<br>
+        import employee.Employee;<br>
+        public class MainProgram {<br>
+            public static void main(String[] args) {<br>
+                Employee emp1 = new Employee(101);<br>
+                emp1.setBasicPay(50000);<br>
+                emp1.setBasicPay(50000.75);<br>
+                emp1.display();<br>
+            }<br>
+        }<br></p>
+
+        <br>
+    <h3>Program 2: POLYMORPHRISM,INHERITANCE AND INNER CLASSES</h3>
+    <p>
+package inheritance;<br>
+
+class Animal {<br>
+    void sound() {<br>
+        System.out.println("Animal makes a sound");<br>
+    }<br>
+}<br>
+
+class Dog extends Animal {<br>
+
+    @Override<br>
+    void sound() {<br>
+        System.out.println("Dog is barking");<br>
+    }<br>
+
+    class Puppy {<br>
+        void display() {<br>
+            System.out.println("This is a Puppy, child of Dog.");<br>
+        }<br>
+    }<br>
+}<br>
+
+public class Inheritance {<br>
+
+    public static void main(String[] args) {<br>
+
+        // Inheritance<br>
+        Dog myDog = new Dog();<br>
+        myDog.sound();<br>
+
+        // Polymorphism<br>
+        Animal myAnimal = new Dog();<br>
+        myAnimal.sound();<br>
+
+        // Inner class<br>
+        Dog.Puppy myPuppy = myDog.new Puppy();<br>
+        myPuppy.display();<br>
+    }<br>
+}<br>
+</p>
+
+<h3>Program 3:CUSTOM SHAPES</h3>
+
+<p>
+    
+package java_lab;<br>
+
+import javax.swing.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+
+public class CustomShapeFrame extends JFrame implements ActionListener {<br>
+
+    String selectedShape = "None";<br>
+    Color selectedColor = Color.BLACK;<br>
+
+    public CustomShapeFrame(int width, int height, int x, int y) { <br>
+
+        setTitle("Custom Shape Drawer");<br>
+        setSize(width, height);<br>
+        setLocation(x, y);<br>
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+
+        // Create menu bar<br>
+        JMenuBar menuBar = new JMenuBar();<br>
+
+        // Shapes menu<br>
+        JMenu shapeMenu = new JMenu("Shapes");<br>
+
+        String[] shapes = {"Line", "Rectangle", "Oval"};<br>
+
+        for (String shape : shapes) {<br>
+            JMenuItem item = new JMenuItem(shape);<br>
+            item.addActionListener(this);<br>
+            shapeMenu.add(item);<br>
+        }<br>
+
+        // Colors menu<br>
+        JMenu colorMenu = new JMenu("Colors");<br>
+
+        String[] colors = {"Red", "Blue", "Green"};<br>
+
+        for (String color : colors) {<br>
+            JMenuItem item = new JMenuItem(color);<br>
+            item.addActionListener(this);<br>
+            colorMenu.add(item);<br>
+        }<br>
+
+        menuBar.add(shapeMenu);<br>
+        menuBar.add(colorMenu);<br>
+
+        setJMenuBar(menuBar);<br>
+    }<br>
+
+    @Override<br>
+    public void paint(Graphics g) {<br>
+        super.paint(g);<br>
+
+        // Draw below the menu bar<br>
+        Insets insets = getInsets();<br>
+        Graphics2D g2 = (Graphics2D) g.create();<br>
+
+        g2.translate(0, insets.top);<br>
+        g2.setColor(selectedColor);<br>
+
+        switch (selectedShape) {<br>
+            case "Line":<br>
+                g2.drawLine(50, 100, 250, 100);<br>
+                break;<br>
+
+            case "Rectangle":<br>
+                g2.drawRect(50, 120, 200, 80);<br>
+                break;<br>
+
+            case "Oval":<br>
+                g2.drawOval(50, 120, 200, 80);<br>
+                break;<br>
+        }<br>
+
+        g2.dispose();<br>
+    }
+<br>
+    @Override<br>
+    public void actionPerformed(ActionEvent e) {<br>
+
+        String cmd = e.getActionCommand();<br>
+
+        if (cmd.equals("Line")<br>
+                || cmd.equals("Rectangle")<br>
+                || cmd.equals("Oval")) {<br>
+            selectedShape = cmd;<br>
+        } else if (cmd.equals("Red")) {<br>
+            selectedColor = Color.RED;<br>
+        } else if (cmd.equals("Blue")) {<br>
+            selectedColor = Color.BLUE;<br>
+        } else if (cmd.equals("Green")) {<br>
+            selectedColor = Color.GREEN;<br>
+        }<br>
+<br>
+        repaint();<br>
+    }<br>
+
+    public static void main(String[] args) {<br>
+
+        SwingUtilities.invokeLater(() -> {<br>
+            CustomShapeFrame frame =<br>
+                    new CustomShapeFrame(500, 400, 200, 200);<br>
+
+            frame.setVisible(true);<br>
+        });<br>
+    }<br>
+}<br>
+
+</p>
+
+<h4>Module pro3</h4>
+
+<p>module event01 {<br>
+	requires java.desktop;<br>
+}<br></p><br>
+
+<h3>Program 4: MOUSE EVENT</h3>
+
+<p>
+    package pro3;<br>
+
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+
+class Mousedemo extends Frame implements MouseListener {<br>
+
+    Label label;<br>
+
+    Mousedemo() {<br>
+        label = new Label("Click the mouse");<br>
+        add(label);<br>
+
+        addMouseListener(this);<br>
+
+        setSize(400, 300);<br>
+        setVisible(true);<br>
+    }<br>
+
+    public void mouseClicked(MouseEvent e) {<br>
+        label.setText("Mouse Clicked");<br>
+    }<br>
+
+    public void mousePressed(MouseEvent e) {<br>
+        label.setText("Mouse Pressed");<br>
+    }<br>
+
+    public void mouseReleased(MouseEvent e) {<br>
+        label.setText("Mouse Released");<br>
+    }<br>
+
+    public void mouseEntered(MouseEvent e) {<br>
+        label.setText("Mouse Entered");<br>
+    }
+<br>
+    public void mouseExited(MouseEvent e) {<br>
+        label.setText("Mouse Exited");<br>
+    }<br>
+
+    public static void main(String[] args) {<br>
+        new Mousedemo();<br>
+    }<br>
+}<br>
+</p>
+<h4>Module pro4</h4>
+<p>module pro4 {<br>
+	requires java.desktop;<br>
+}<br><br></p>
+
+
+<h3>Program 5: STUDENT INFO 
+</h3>
+
+<p>
+    package java_lab;<br>
+
+import java.io.*;<br>
+import java.util.Scanner;<br>
+
+public class StudentInfoFile {<br>
+    public static void main(String[] args) {<br>
+        Scanner sc = new Scanner(System.in);<br>
+        String fileName = "students.txt";<br>
+
+        try {<br>
+            // Writing student info<br>
+            FileWriter fw = new FileWriter(fileName, true);<br>
+            BufferedWriter bw = new BufferedWriter(fw);<br>
+
+            System.out.print("Enter number of students: ");<br>
+            int n = sc.nextInt();<br>
+            sc.nextLine(); // consume newline<br>
+
+            for (int i = 0; i < n; i++) {<br>
+                System.out.println("Enter details for Student " + (i + 1));<br>
+
+                System.out.print("Name: ");<br>
+                String name = sc.nextLine();<br>
+
+                System.out.print("Roll Number: ");<br>
+                String roll = sc.nextLine();<br>
+
+                System.out.print("Department: ");<br>
+                String dept = sc.nextLine();<br>
+
+                System.out.print("Marks: ");<br>
+                int marks = sc.nextInt();<br>
+                sc.nextLine(); // consume newline<br>
+
+                bw.write(name + "," + roll + "," + dept + "," + marks);<br>
+                bw.newLine();<br>
+            }<br>
+
+            bw.close();<br>
+            fw.close();<br>
+
+            System.out.println("\nStudent details written to file successfully.");<br>
+
+            // Reading student info<br>
+            System.out.println("\nReading student details from file:");<br>
+
+            BufferedReader br = new BufferedReader(new FileReader(fileName));<br>
+            String line;<br>
+
+            while ((line = br.readLine()) != null) {<br>
+                String[] parts = line.split(",");<br>
+
+                System.out.println("Name: " + parts[0]<br>
+                        + ", Roll No: " + parts[1]<br>
+                        + ", Dept: " + parts[2]<br>
+                        + ", Marks: " + parts[3]);<br>
+            }<br>
+
+            br.close();<br>
+
+        } catch (IOException e) {<br>
+            System.out.println("Error: " + e.getMessage());<br>
+        }<br>
+    }<br>
+}<br><br>
+</p>
+
+<h3>Program 6: TREE VIEWER </h3>
+
+<>
+    package program6;<br>
+
+import javax.swing.JFrame;<br>
+import javax.swing.JTree;<br>
+import javax.swing.tree.DefaultMutableTreeNode;<br>
+
+public class SimpleTree {<br>
+
+    public static void main(String[] args) {<br>
+
+        // Create root node<br>
+        DefaultMutableTreeNode root =<br>
+                new DefaultMutableTreeNode("College");<br>
+
+        // Create child nodes<br>
+        DefaultMutableTreeNode dept =<br>
+                new DefaultMutableTreeNode("Department");<br>
+
+        DefaultMutableTreeNode course =<br>
+                new DefaultMutableTreeNode("MCA");<br>
+
+        // Build tree<br>
+        root.add(dept);<br>
+        dept.add(course);<br>
+
+        // Create JTree<br>
+        JTree tree = new JTree(root);<br>
+
+        // Create JFrame<br>
+        JFrame f = new JFrame("Tree Viewer");<br>
+
+        f.add(tree);<br>
+
+        f.setSize(500, 450);<br>
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        f.setVisible(true);<br>
+    }<br>
+}<br>
+
+<h3>Program 7: BADWORDS </h3>
+
+<p>
+    package pro11;<br>
+
+import javafx.application.Application;<br>
+import javafx.scene.Scene;<br>
+import javafx.scene.control.Button;<br>
+import javafx.scene.layout.StackPane;<br>
+import javafx.stage.Stage;<br>
+
+public class Main extends Application {<br>
+
+    @Override<br>
+    public void start(Stage stage) {<br>
+
+        Button button = new Button("Hello JavaFX!");<br>
+
+        StackPane root = new StackPane(button);<br>
+
+        Scene scene = new Scene(root, 400, 250);<br>
+
+        stage.setTitle("My First JavaFX Application");<br>
+        stage.setScene(scene);<br>
+        stage.show();<br>
+    }<br>
+
+    public static void main(String[] args) {<br>
+        launch(args);<br>
+    }<br>
+}<br>
+</p><br>
+
+<h3>Program 8: TEMPERATURE_CONVERTER </h3>
+
+<p>
+    package program7;<br>
+
+import javax.swing.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+
+class TemperatureConverter extends JFrame implements ActionListener {<br>
+
+    JTextField celsius, fahrenheit;<br>
+    JButton cToF, fToC;<br>
+
+    TemperatureConverter() {<br>
+
+        setTitle("Temperature Converter");<br>
+        setSize(400, 380);<br>
+
+        setLayout(new FlowLayout());<br>
+
+        // Celsius<br>
+        add(new JLabel("Celsius:"));<br>
+        celsius = new JTextField(10);<br>
+        add(celsius);<br>
+
+        // Fahrenheit<br>
+        add(new JLabel("Fahrenheit:"));<br>
+        fahrenheit = new JTextField(10);<br>
+        add(fahrenheit);<br>
+
+        // Panel for two buttons<br>
+        JPanel buttonPanel = new JPanel(new FlowLayout());<br>
+
+        cToF = new JButton("Celsius to Fahrenheit");<br>
+        fToC = new JButton("Fahrenheit to Celsius");<br>
+
+        buttonPanel.add(cToF);<br>
+        buttonPanel.add(fToC);<br>
+
+        add(buttonPanel);<br>
+
+        // Action listeners<br>
+        cToF.addActionListener(this);<br>
+        fToC.addActionListener(this);<br>
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        setVisible(true);<br>
+    }<br>
+
+    public void actionPerformed(ActionEvent e) {<br>
+
+        double c, f;<br>
+
+        if (e.getSource() == cToF) {<br>
+
+            c = Double.parseDouble(celsius.getText());<br>
+            f = (c * 9 / 5) + 32;<br>
+
+            fahrenheit.setText(String.valueOf(f));<br>
+        }<br>
+
+        if (e.getSource() == fToC) {<br>
+
+            f = Double.parseDouble(fahrenheit.getText());<br>
+            c = (f - 32) * 5 / 9;<br>
+
+            celsius.setText(String.valueOf(c));<br>
+        }<br>
+    }<br>
+
+    public static void main(String[] args) {<br>
+        new TemperatureConverter();<br>
+    }<br>
+}<br><br>
+</p>
+
+<h3>Program 9:STUDENT_FX </h3>
+
+<p>
+    package java_lab; <br>
+import javax.swing.*; <br>
+import java.awt.*; <br>
+public class StudentDetailsSwing extends JFrame { <br>
+ public StudentDetailsSwing() { <br>
+ setTitle("Student Details"); <br>
+ setSize(400, 300); <br>
+ setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+ setLayout(new GridLayout(6, 2, 10, 10)); <br>
+ JLabel nameLabel = new JLabel("Name:");  <br>
+ JTextField nameField = new JTextField(); <br>
+ JLabel regLabel = new JLabel("Register No:");  <br>
+ JTextField regField = new JTextField(); <br>
+ JLabel deptLabel = new JLabel("Department:");<br>
+ JTextField deptField = new JTextField(); <br>
+ JLabel emailLabel = new JLabel("Email:");  <br>
+ JTextField emailField = new JTextField();  <br>
+ JButton submitBtn = new JButton("Submit");  <br>
+ JButton clearBtn = new JButton("Clear");  <br>
+ add(nameLabel); add(nameField); <br>
+ add(regLabel); add(regField); <br>
+ add(deptLabel); add(deptField);<br>
+ add(emailLabel); add(emailField); <br>
+ add(submitBtn); add(clearBtn); <br>
+ // Action for Submit <br>
+ submitBtn.addActionListener(e -> { <br>
+ String name = nameField.getText(); <br>
+ String reg = regField.getText(); <br>
+ String dept = deptField.getText(); <br>
+ String email = emailField.getText(); <br>
+ if (name.isEmpty() || reg.isEmpty() || dept.isEmpty() || email.isEmpty()) {  <br>
+ JOptionPane.showMessageDialog(this, "Please fill all fields.");  } else { <br>
+ String info = "Name: " + name + "\nRegister No: " + reg +  "\nDepartment: " + dept + "\nEmail: " + email; <br>
+ JOptionPane.showMessageDialog(this, info, "Student Details",  JOptionPane.INFORMATION_MESSAGE); <br>
+ } <br>
+ }); <br>
+ // Action for Clear <br>
+ clearBtn.addActionListener(e -> { <br>
+ nameField.setText(""); <br>
+ regField.setText(""); <br>
+ deptField.setText(""); <br>
+ emailField.setText(""); <br>
+ }); <br>
+ setVisible(true); <br>
+ } <br>
+
+  public static void main(String[] args) { <br>
+ SwingUtilities.invokeLater(StudentDetailsSwing::new); <br>
+ } <br>
+}<br><br><br>
+
+</p>
+
+
+<h3>Program 10: IMAGE_VIEWER </h3>
+
+<p>
+    package image; <br>
+import javax.swing.*; <br>
+import java.awt.*; <br>
+import java.io.File; <br>
+import javax.imageio.ImageIO; <br>
+import java.awt.image.BufferedImage; <br>
+import java.beans.*; <br>
+public class ImageViewerBean extends JPanel implements java.io.Serializable {  <br>
+ private BufferedImage image; <br>
+ public ImageViewerBean() { <br>
+ // Default constructor <br>
+ } <br>
+ public void setImagePath(String path) { <br>
+ try { <br>
+ image = ImageIO.read(new File(path)); <br>
+ repaint(); <br>
+ } catch (Exception e) { <br>
+ System.out.println("Image loading failed: " + e.getMessage());  } <br>
+ } <br>
+ public String getImagePath() { <br>
+ return ""; <br>
+ } <br>
+ protected void paintComponent(Graphics g) {<br>
+
+ super.paintComponent(g); <br>
+ if (image != null) { <br>
+ int x = (getWidth() - image.getWidth()) / 2; <br>
+ int y = (getHeight() - image.getHeight()) / 2; <br>
+ g.drawImage(image, x, y, this); <br>
+ } <br>
+ } <br>
+ } <br>
+
+
+ <br> <br> <br>
+package image;  <br>
+import javax.swing.*;  <br>
+public class ImageViewertest {  <br>
+ public static void main(String[] args) {  <br>
+ JFrame frame = new JFrame("Java Bean Image Viewer");  <br>
+ ImageViewerBean viewer = new ImageViewerBean();  <br>
+  
+ viewer.setImagePath("C:/Users/Admin/image1.png"); // Change to your image path  <br>
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  <br>
+ frame.setSize(600, 400);  <br>
+ frame.add(viewer);  <br>
+ frame.setVisible(true);  <br>
+ }  <br>
+}  <br>
+
+</p>
+
+<h3>Program 11: 2D_SHAPES 
+</h3>
+
+<p>
+    package java_lab; <br>
+import javax.swing.JFrame; <br>
+import javax.swing.JPanel; <br>
+import java.awt.Graphics; <br>
+public class ShapeDrawing extends JPanel { <br>
+ public void paintComponent(Graphics g) { <br>
+ super.paintComponent(g); <br>
+ // Draw a line <br>
+ g.drawLine(20, 30, 200, 30); <br>
+ // Draw a rectangle <br>
+ g.drawRect(20, 50, 100, 60); <br>
+ // Draw an oval <br>
+ g.drawOval(150, 50, 100, 60); <br>
+ } <br>
+ public static void main(String[] args) { <br>
+ JFrame frame = new JFrame("Drawing Basic Shapes");  <br>
+ ShapeDrawing panel = new ShapeDrawing();  <br>
+ frame.setSize(300, 200); <br>
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  <br>
+ frame.add(panel); <br>
+ frame.setVisible(true); <br>
+ } <br>
+}<br><br>
+
+</p>
+
+<h3>Program 12:TRANSFORMATIONS</h3>
+
+<p>
+    package java_lab; <br>
+import javax.swing.*; <br>
+import java.awt.*; <br>
+import java.awt.event.*; <br>
+public class TransformShapes extends JPanel implements ActionListener {  <br>
+private int choice = 0; <br>
+// 1=translate, 2=scale, 3=rotate <br>
+ public TransformShapes() { <br>
+ JFrame frame = new JFrame("2D Transformations - Line & Rectangle");  <br>
+ frame.setSize(500, 400); <br>
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); <br>
+ // Buttons for transformations <br>
+ JButton translateBtn = new JButton("Translate"); <br>
+ JButton scaleBtn = new JButton("Scale"); <br>
+ JButton rotateBtn = new JButton("Rotate"); <br>
+ translateBtn.addActionListener(this); <br>
+ scaleBtn.addActionListener(this); <br>
+ rotateBtn.addActionListener(this); <br>
+ JPanel buttonPanel = new JPanel(); <br>
+ buttonPanel.add(translateBtn); <br>
+ buttonPanel.add(scaleBtn); <br>
+ buttonPanel.add(rotateBtn); <br>
+ frame.add(this, BorderLayout.CENTER); <br>
+ frame.add(buttonPanel, BorderLayout.SOUTH);<br>
+ frame.setVisible(true); <br>
+ } <br>
+ @Override <br>
+ public void paintComponent(Graphics g) {  <br>
+ super.paintComponent(g); <br>
+ Graphics2D g2 = (Graphics2D) g; <br>
+ // Original shape <br>
+ g2.setColor(Color.BLUE); <br>
+ g2.drawRect(100, 100, 100, 50); // rectangle  <br>
+ g2.drawLine(100, 200, 200, 250); // line  <br>
+ g2.drawString("Original", 90, 90); <br>
+ // Apply transformations <br>
+ g2.setColor(Color.RED); <br>
+ switch (choice) { <br>
+ case 1: // Translation <br>
+ g2.translate(100, 50); <br>
+ g2.drawRect(100, 100, 100, 50);  <br>
+ g2.drawLine(100, 200, 200, 250);  <br>
+ g2.drawString("Translated", 90, 90);  <br>
+ break; <br>
+ case 2: // Scaling <br>
+ g2.translate(100, 50); <br>
+ g2.scale(1.5, 1.5); <br>
+ g2.drawRect(100, 100, 100, 50);  <br>
+ g2.drawLine(100, 200, 200, 250);  <br>
+ g2.drawString("Scaled", 90, 90);<br>
+
+ break; <br>
+ case 3: // Rotation <br>
+ g2.translate(250, 150); <br>
+ g2.rotate(Math.toRadians(45)); <br>
+ g2.drawRect(0, 0, 100, 50); <br>
+ g2.drawLine(0, 100, 100, 150); <br>
+ g2.drawString("Rotated", 10, -10); <br>
+ break; <br>
+ } <br>
+ } <br>
+ @Override <br>
+ public void actionPerformed(ActionEvent e) { <br>
+ String cmd = e.getActionCommand(); <br>
+ if (cmd.equals("Translate")) choice = 1; <br>
+ else if (cmd.equals("Scale")) choice = 2; <br>
+ else if (cmd.equals("Rotate")) choice = 3; <br>
+ repaint(); <br>
+ } <br>
+ public static void main(String[] args) { <br>
+ SwingUtilities.invokeLater(TransformShapes::new);  } <br>
+} <br><br><br>
+
+</p>
+
+</body>
+</html>
